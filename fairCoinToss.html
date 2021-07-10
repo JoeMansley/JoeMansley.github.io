@@ -11,24 +11,34 @@
     <body>
         <h1>Coin toss</h1>
         
-        Click anywhere
+        Click to toss
         <p id="result"></p>
-        <a href="./index.html">Home page</a>
-        
+        <a href="./index.html">Home page</a> 
         <script>
+            var linkClicked=false;
             var resultEl=document.getElementById("result");
-            document.addEventListener("click", function() {    
-        var r=Math.floor(2*Math.random());
-        var result="T";
-        if(r===0){result="H"}
-        resultEl.textContent=result;
-        
-        if(resultEl.style.color==="maroon"){
-            resultEl.style.color="navy";
+            var linkEls=document.getElementsByTagName("a");
+            linkEls[0].addEventListener("click", function(){
+        linkClicked=true
+    })
+            
+            document.addEventListener("click", function() {
+        if(linkClicked){
+            linkClicked=false;
         }else{
-            resultEl.style.color="maroon";
+            var r=Math.floor(2*Math.random());
+            var result="T";
+            if(r){result="H"} 
+            resultEl.textContent=result;
+            
+            if(resultEl.style.color==="maroon"){
+                resultEl.style.color="navy";
+            }else{
+                resultEl.style.color="maroon";
+            }
         }
     });
+    
         </script>
     </body>
 </html>
