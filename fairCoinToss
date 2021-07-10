@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Coin toss</title>
+        
+        <style>
+            #result{font-size: 64px;}
+        </style>
+    </head>
+    <body>
+        <h1>Coin toss</h1>
+        
+        Click anywhere
+        <p id="result"></p>
+        <a href="./index.html">Home page</a>
+        
+        <script>
+            var resultEl=document.getElementById("result");
+            document.body.addEventListener("click", function() {    
+        var r=Math.floor(2*Math.random());
+        var result="T";
+        if(r===0){result="H"}
+        resultEl.textContent=result;
+        
+        if(resultEl.style.color==="maroon"){
+            resultEl.style.color="navy";
+        }else{
+            resultEl.style.color="maroon";
+        }
+    });
+        </script>
+    </body>
+</html>
