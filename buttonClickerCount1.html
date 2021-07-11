@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Button counter</title>
+        
+        <style>
+            #b1{
+                background: orange;
+                border: white;
+                width:130px;
+                height:100px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Click counter</h1>
+        <button id="b1">
+            click me
+        </button>
+        Count: <span id="count"> </span>
+        
+        <script>
+            let countEl=document.getElementById("count");
+            
+            if(sessionStorage.getItem('count')===null){
+            	sessionStorage.setItem('count',0);
+            }
+            countEl.textContent=sessionStorage.getItem('count');
+            
+            let button=document.getElementById("b1");
+            button.onclick=function(){
+              sessionStorage.setItem('count',parseInt(sessionStorage.getItem('count'))+1);
+              countEl.textContent=sessionStorage.getItem('count');
+            }
+            
+        </script>
+    </body>
+</html>
