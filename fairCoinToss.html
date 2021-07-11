@@ -15,29 +15,24 @@
         <p id="result"></p>
         <a href="./index.html">Home page</a> 
         <script>
-            var linkClicked=false;
             var resultEl=document.getElementById("result");
             var linkEls=document.getElementsByTagName("a");
-            linkEls[0].addEventListener("click", function(){
-        linkClicked=true
-    })
+            linkEls[0].onclick=function(e){
+        e.stopPropagation();
+    }
+        
+            document.onclick=function() {
+        var r=Math.floor(2*Math.random());
+        var result="T";
+        if(r){result="H"} 
+        resultEl.textContent=result;
             
-            document.addEventListener("click", function() {
-        if(linkClicked){
-            linkClicked=false;
-        }else{
-            var r=Math.floor(2*Math.random());
-            var result="T";
-            if(r){result="H"} 
-            resultEl.textContent=result;
-            
-            if(resultEl.style.color==="maroon"){
-                resultEl.style.color="navy";
-            }else{
-                resultEl.style.color="maroon";
-            }
+        if(resultEl.style.color==="maroon"){
+            resultEl.style.color="navy";
+        }else{                
+            resultEl.style.color="maroon";
         }
-    });
+    };
     
         </script>
     </body>
