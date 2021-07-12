@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Find the road game</title>
+        
+        <style>
+          *{
+            background-color: black;
+            color: cyan;
+          }
+          button{
+            display: block;
+            border: none;
+            background-color: hsl(0,0%,20%);
+            margin: auto;
+          }
+        </style>
+    </head>
+    <body>
+        <p id="text">You've been travelling through a forest on a river, but your boat struck a rock and sunk. You have safely reached the bank. Now you must find your way through the forest to the road. </p>
+        
+        <button id="startButton"> Begin</button>
+    <script>
+    	
+        let startButton=document.getElementById("startButton");
+        let text=document.getElementById("text");  
+        let state="intro";
+        let x=5; let y=0;
+        
+        startButton.onclick=function(){
+            state="lost";
+            text.textContent="";
+            startButton.remove();
+        }
+        
+        document.onkeydown=function(e){
+        	if(state!=="intro" && state!=="won"){
+          	if(e.key==="ArrowUp"){
+            	state="lost";
+              y+=1;
+            }else if(e.key==="ArrowDown"){
+            	if((x<=0 && y===-15) || (x>0 && y===0)){ //don't need x<=0
+              	state="blocked"
+              }else{
+              	state="lost";
+                y-=1;
+              }
+            }
+            else if(e.key==="ArrowLeft"){
+            	if(x<=-19){
+              	state="won";
+              }else{
+              	state="lost";
+                x-=1;
+              }
+            }
+        		else if(e.key==="ArrowRight"){
+            	if(x===0 && y<0){
+              	state="blocked";
+              }else{
+              	x+=1;
+                state="lost";
+              }
+            }
+            
+           	if(state==="lost"){
+            	text.textContent=""
+            }else if(state==="blocked"){
+            	text.textContent="The river blocks your path"
+            }else if(state==="won"){
+            	text.textContent="You've found the road, well done!"
+            }
+            
+          }
+        }
+        
+    </script>
+    
+    </body>
+</html>
