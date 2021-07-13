@@ -22,10 +22,10 @@
     
   	var ready=true;
   	var choices=[];
-    var last=JSON.parse(localStorage.getItem('last')); 
+    	var last=JSON.parse(localStorage.getItem('last')); 
     
   	var counts=JSON.parse(localStorage.getItem('counts'));
-    if(counts===null){
+		if(counts===null){
       counts=[];
       for(let i=0; i<3; i++){
         counts[i]=[[0,0,0],[0,0,0],[0,0,0]];
@@ -104,10 +104,8 @@
           localStorage.setItem('counts',JSON.stringify(counts));
         },1000);
       }
-    
-
     }
-    
+		
   </script>
   </body>
 </html>
