@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Modulo game</title>
+    <style>
+      #question{
+        font-size: 30px;
+      }
+    </style>
+  </head>
+  <body>
+  
+  <div id="question"><span class="num"> </span> mod <span class="num"> </span></div>
+  
+  <input type="number" id="answer">  <span id="response"></span>
+  
+  
+  <script>
+  	var updatenums=function(){
+      nums[0]=3-Math.floor(s*Math.log(1-Math.random()));
+      nums[1]=2-Math.floor(5*Math.log(1-Math.random()));
+      
+      for(let i=0; i<2; i++){
+      	numEls[i].textContent=nums[i];
+      }
+    }
+    
+    var s=40;
+    var t=0;
+    var nums=[];
+    var numEls=document.getElementsByClassName("num");
+    var responseEl=document.getElementById("response")
+    var answer;
+    
+    updatenums();
+   	
+    document.onkeydown=function(e){
+    	if(e.key==="Enter"){
+        answer=parseInt(document.getElementById("answer").value)
+
+        var rightAnswer=nums[0]%nums[1]
+        if(answer===rightAnswer){
+          responseEl.textContent="Correct"
+          s+=15000/Math.max(t,3000);
+        }else{
+          responseEl.textContent="The answer was "+rightAnswer;
+          s=Math.max(10,s-5);
+        }
+        window.setTimeout(function(){
+          responseEl.textContent=""
+        },3200)
+
+        updatenums()
+        t=0;
+        document.getElementById("answer").value="";
+      }
+    }
+    
+    window.setInterval(function(){
+    	t+=1;
+    }, 1)
+  </script>
+  </body>
+</html>
