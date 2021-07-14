@@ -20,12 +20,11 @@
   <script>
   	var letters=["R","P","S"];
     
-  	var ready=true;
   	var choices=[];
-    	var last=JSON.parse(localStorage.getItem('last')); 
+    var last=JSON.parse(localStorage.getItem('last'));
     
   	var counts=JSON.parse(localStorage.getItem('counts'));
-		if(counts===null){
+    if(counts===null){
       counts=[];
       for(let i=0; i<3; i++){
         counts[i]=[[0,0,0],[0,0,0],[0,0,0]];
@@ -39,7 +38,6 @@
     
     var handsEls=document.getElementsByClassName("hand");
     var scoreEl=document.getElementById("scoreCounter");
-		scoreEl.textContent="Score: "+ score[0]+"  "+score[1];
     
     var nextChoice=function(){
       let probs=[1/3,1/3,1/3];
@@ -66,46 +64,48 @@
       }
     }
     
-		document.onkeydown=function(e){
-    	if(ready){
-        if(e.key==="r"){
-          choices[0]=0;
-        }else if(e.key==="p"){
-          choices[0]=1;
-        }else if(e.key==="s"){
-          choices[0]=2;
-        }else{
-          return;
-        }
-
-        ready=false;
-        choices[1]=nextChoice();
-        if(last!==null){
-          counts[last[0]][last[1]][choices[0]]++;
-        }
-        last=choices;
-
-				for(let i=0; i<2; i++){
-        	handsEls[i].textContent="?"
-        }
-
-        window.setTimeout(function(){
-          for(let i=0; i<2; i++){
-          	handsEls[i].textContent=letters[choices[i]];
-          }
-
-          ready=true;
-
-          score[0]+=((choices[1]-choices[0]+1)%3===0); score[1]+=((choices[0]-choices[1]+1)%3===0);
-          scoreEl.textContent="Score: "+ score[0]+"  "+score[1];
-
-          localStorage.setItem('score',JSON.stringify(score));
-          localStorage.setItem('last',JSON.stringify(last));
-          localStorage.setItem('counts',JSON.stringify(counts));
-        },1000);
-      }
+    var prepForNextRound=function(){
+    	scoreEl.textContent="Score: "+score[0]+"  "+score[1];
+    	document.addEventListener('keydown',playRound);
     }
-		
+    
+		var playRound=function(e){
+    	if(e.key==="r"){
+        choices[0]=0;
+      }else if(e.key==="p"){
+        choices[0]=1;
+      }else if(e.key==="s"){
+        choices[0]=2;
+      }else{
+        return;
+      }
+      
+      document.removeEventListener('keydown',playRound);
+      choices[1]=nextChoice();
+      if(last!==null){
+        counts[last[0]][last[1]][choices[0]]++;
+      }
+      last=[choices[0],choices[1]];
+      for(let i=0; i<2; i++){
+       	handsEls[i].textContent="?"
+      }
+
+      window.setTimeout(function(){
+        for(let i=0; i<2; i++){
+        	handsEls[i].textContent=letters[choices[i]];
+        }
+        
+        score[0]+=((choices[1]-choices[0]+1)%3===0); score[1]+=((choices[0]-choices[1]+1)%3===0);
+
+        localStorage.setItem('score',JSON.stringify(score));
+        localStorage.setItem('last',JSON.stringify(last));
+        localStorage.setItem('counts',JSON.stringify(counts));
+        
+        prepForNextRound();
+      },1000);
+    }
+    
+    prepForNextRound();
   </script>
   </body>
 </html>
