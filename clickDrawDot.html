@@ -13,7 +13,7 @@
   </head>
   <body>
   <canvas id="canvas1"></canvas>
-  Here's some tesxt 6
+  Here's some tesxt 7
 	 <span id="text2">Here's more text</span>
 		
   <script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script>
@@ -22,14 +22,9 @@
 		//"https://github.com/processing-js/processing-js/blob/master/processing.js"
     var locs=[]
     
-    var outputEl = document.getElementById("text2"); 
-	outputEl.textContent="scipt is running"
-    
-	 
     var sketch = function(pjs) {
     	pjs.size(window.innerWidth,200) //innerHeight
       pjs.background(255,255,255)
-	pjs.background(2,125,255)
       pjs.strokeWeight(3);
         
       for(var i=0; i<locs.length; i++){
@@ -42,8 +37,6 @@
     new Processing(canvasEl,sketch); 
     var onClick=function(e){
       locs.push([e.clientX,e.clientY])
-		console.log(locs)
-		outputEl.textContent="clicked";
       new Processing(canvasEl,sketch); 
     }
     canvasEl.addEventListener("click",onClick);
