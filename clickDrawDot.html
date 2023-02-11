@@ -34,8 +34,15 @@
 
     new Processing(canvasEl,sketch); 
     var onClick=function(e){
-      locs.push([e.clientX,e.clientY])
-      new Processing(canvasEl,sketch); 
+      console.log(locs)
+      loc = [e.clientX,e.clientY]
+      for(var i=0; i<locs.length; i++){
+      	if(locs[i][0]==loc[0] && locs[i][1]==loc[1]){
+        	return
+        }
+      }
+      locs.push(loc)
+      new Processing(canvasEl,sketch);
     }
     canvasEl.addEventListener("click",onClick);
 		
