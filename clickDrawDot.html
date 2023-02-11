@@ -18,25 +18,25 @@
   <script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script>
 		
 	<script>  
-    var locs=[]
+    let locs=[]
     
-    var sketch = function(pjs) {
-    	pjs.size(window.innerWidth,200) //innerHeight
+    let sketch = function(pjs) {
+    	pjs.size(window.innerWidth,window.innerHeight)
       pjs.background(255,255,255)
       pjs.strokeWeight(3);
         
-      for(var i=0; i<locs.length; i++){
+      for(let i=0; i<locs.length; i++){
       	pjs.point(locs[i][0],locs[i][1])
       }
     };
 	
-    var canvasEl = document.getElementById("canvas1"); 
+    let canvasEl = document.getElementById("canvas1"); 
 
     new Processing(canvasEl,sketch); 
-    var onClick=function(e){
+    let onClick=function(e){
       console.log(locs)
       loc = [e.clientX,e.clientY]
-      for(var i=0; i<locs.length; i++){
+      for(let i=0; i<locs.length; i++){
       	if(locs[i][0]==loc[0] && locs[i][1]==loc[1]){
         	return
         }
