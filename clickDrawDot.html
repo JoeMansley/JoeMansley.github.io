@@ -32,9 +32,10 @@
     var canvasEl = document.getElementById("canvas1"); 
 
     new Processing(canvasEl,sketch); 
-		
+	console.log(43)	
     var onClick=function(e){
       locs.push([e.clientX,e.clientY])
+		console.log(locs)
       new Processing(canvasEl,sketch); 
     }
     canvasEl.addEventListener("click",onClick);
