@@ -14,12 +14,16 @@
   <body>
   <canvas id="canvas1"></canvas>
   Here's some tesxt 35
-  <script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js">
+	 <span id="text2">Here's more text</span>
+  <script>
   //src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"
     var locs=[]
     
+    var outputEl = document.getElementById("text2"); 
+	outputEl.textContent="scipt is running"
     console.log("script is running")
     
+	 /*
     var sketch = function(pjs) {
     	pjs.size(window.innerWidth,200) //innerHeight
       pjs.background(255,255,255)
@@ -30,15 +34,16 @@
       	pjs.point(locs[i][0],locs[i][1])
       }
     };
-
+	*/
     var canvasEl = document.getElementById("canvas1"); 
 
-    new Processing(canvasEl,sketch); 
+    //new Processing(canvasEl,sketch); 
 	console.log(43)	
     var onClick=function(e){
       locs.push([e.clientX,e.clientY])
 		console.log(locs)
-      new Processing(canvasEl,sketch); 
+		outputEl.textContent="clicked";
+      //new Processing(canvasEl,sketch); 
     }
     canvasEl.addEventListener("click",onClick);
 		
