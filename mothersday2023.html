@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Mother's Day 2023</title>
+    <style>
+      #canvas1{
+	      outline: none;
+        position: absolute;
+        left: 0px;
+        top: 0px
+      }
+    </style>
+  </head>
+  <body>
+  <canvas id="canvas1"></canvas>
+		
+  <script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script>
+		
+	<script>  
+    let locs=[[107,198],[119,194],[132,203],[154,203],[154,213],[171,210],[162,216],[121,140],[143,159],[162,162],[183,162],[162,179],[132,145],[179,144],[204,144],[242,138],[234,147],[229,155],[270,156],[259,161],[279,151],[267,180],[286,176]];
+    let dims=[[10,20],[10,18],[11,18],[15,18],[10,12],[8,14],[7,13],[8,14],[10,16],[9,15],[9,15],[6,9],[7,15],[9,18],[9,18],[8,17],[10,16],[9,15],[9,14],[10,18],[11,17],[15,18],[6,11]];
+    
+    let sketch = function(pjs) {
+      pjs.size(window.innerWidth,window.innerHeight);
+      pjs.background(255,255,255);
+      pjs.fill(20,0,255);
+      pjs.textSize(30)
+      pjs.text("Happy Mother's Day Smood xxx",10,33)
+      
+      pjs.noStroke();
+      pjs.fill(140,90,0)
+      pjs.triangle(184,307,240,307,209,254);
+      pjs.rect(193,182,37,125);
+      pjs.triangle(199,212,101,194,212,241);
+      pjs.triangle(210,187,118,136,201,219);
+      pjs.triangle(210,190,287,144,218,222);
+      pjs.triangle(240,190,232,144,249,178);
+      pjs.triangle(206,190,245,129,221,219);
+      pjs.triangle(169,173,212,133,179,191);
+      pjs.triangle(192,155,175,136,187,160);
+      pjs.triangle(288,175,245,183,209,206);
+      
+      pjs.fill(40,186,0,200);
+      for(let i=0; i<locs.length; i++){
+          pjs.ellipse(locs[i][0],locs[i][1],dims[i][0],dims[i][1]);
+      }
+    };
+	
+    let canvasEl = document.getElementById("canvas1"); 
+
+    new Processing(canvasEl,sketch);
+		
+  </script>
+  </body>
+</html>
